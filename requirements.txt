@@ -1,0 +1,13 @@
+h5py
+numpy
+pandas
+scikit-learn
+scipy
+matplotlib
+xlsxwriter
+fastai
+kornia
+allennlp
+einops
+timm
+ttach
