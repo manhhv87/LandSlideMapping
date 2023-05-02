@@ -2,9 +2,10 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+import os
+import time
 import torch
 import torch.nn as nn
-import os
 from torch.utils import data
 import torch.backends.cudnn as cudnn
 import h5py
@@ -75,6 +76,7 @@ def main():
 
     print('Testing..........')
     model.eval()
+    time_taken = []
 
     for index, batch in enumerate(test_loader):
         image, _, _, name = batch
@@ -83,7 +85,10 @@ def main():
         print(index+1, '/', len(test_loader), ': Testing ', name)
 
         with torch.no_grad():
+            start_time = time.time()
             pred = model(image)
+            total_time = time.time() - start_time
+            time_taken.append(total_time)
 
         _, pred = torch.max(
             interp(nn.functional.softmax(pred, dim=1)).detach(), 1)
@@ -92,6 +97,9 @@ def main():
         with h5py.File(snapshot_dir+name+'.h5', 'w') as hf:
             hf.create_dataset('mask', data=pred)
 
+    mean_time = np.mean(time_taken)
+    mean_fps = 1/mean_time
+    print(f"Mean Time: {mean_time:1.4f} - Mean FPS: {mean_fps:1.4f}")
 
 if __name__ == '__main__':
     main()
