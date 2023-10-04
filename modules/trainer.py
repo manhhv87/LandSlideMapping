@@ -24,7 +24,7 @@ from models.SPNet.spnet import SPNet
 from models.TransUNet.transunet import TransUNet            # OK
 from models.UNet2Plus.UNet2Plus import UNet2Plus
 from models.UNet3Plus.UNet3Plus import UNet3Plus
-from models.SwinUNet.SwinUNet import SwinUNet
+from models.SwinUNet.vision_transformer import SwinUNet
 from models.SegNet.SegNet import SegResNet
 from models.ResUNet.ResUNet import ResUNet                  # OK
 from models.ResUNet.CBAM_ResUNet import CBAM_ResUNet        # OK
@@ -81,7 +81,7 @@ class Trainer(object):
         #         in_ch=args.input_shape[2], n_classes=args.num_classes)
         elif args.net == 'SwinUNet':
             model = SwinUNet(
-                in_ch=args.input_shape[2], n_classes=args.num_classes)
+                in_ch=args.input_shape[2], n_classes=args.num_classes, img_size=128, window_size=8, depths=[2, 2, 2, 2], depths_decoder=[2, 2, 2, 1])
         elif args.net == 'ResUNet':
             model = ResUNet(
                 in_ch=args.input_shape[2], n_classes=args.num_classes)
