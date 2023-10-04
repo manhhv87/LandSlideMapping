@@ -29,7 +29,7 @@ from models.SwinUNet.SwinUNet import SwinUNet
 from models.SegNet.SegNet import SegResNet
 from models.ResUNet.ResUNet import ResUNet
 from models.ResUNet.CBAM_ResUNet import CBAM_ResUNet
-
+from models.ResUNet.ResUNet_ASPP import ResUNet_ASPP
 
 # Now we will create a pipe of transformations
 aug_pipe = A.Compose([
