@@ -1,4 +1,3 @@
-from numpy.typing import _128Bit
 import torch
 import os
 import numpy as np
@@ -14,21 +13,21 @@ from metrics import SegMetric
 import utils as utl
 from dataset import LandslideDataSet
 
-from models.Deeplabv3_Plus.deeplabv3_plus import DeepLab
+from models.Deeplabv3_Plus.deeplabv3_plus import DeepLab    # Ok
 
-from models.LinkNet.linkNet_ResNet import LinkNet
+from models.LinkNet.linkNet_ResNet import LinkNet           # Ok
 # from models.LinkNet.linkNet_Ghost import LinkNet
 # from models.LinkNet.linkNet_ShuffleNet import LinkNet
 
 # from models.MobileViT import get_model_from_name
 from models.SPNet.spnet import SPNet
-from models.TransUNet.transunet import TransUNet
+from models.TransUNet.transunet import TransUNet            # OK
 from models.UNet2Plus.UNet2Plus import UNet2Plus
 from models.UNet3Plus.UNet3Plus import UNet3Plus
 from models.SwinUNet.SwinUNet import SwinUNet
 from models.SegNet.SegNet import SegResNet
-from models.ResUNet.ResUNet import ResUNet
-from models.ResUNet.CBAM_ResUNet import CBAM_ResUNet
+from models.ResUNet.ResUNet import ResUNet                  # OK
+from models.ResUNet.CBAM_ResUNet import CBAM_ResUNet        # OK
 from models.ResUNet.ResUNet_ASPP import ResUNet_ASPP
 
 # Now we will create a pipe of transformations
@@ -91,6 +90,9 @@ class Trainer(object):
                 in_ch=args.input_shape[2], n_classes=args.num_classes)
         elif args.net == 'CBAM_ResUNet':
             model = CBAM_ResUNet(
+                in_ch=args.input_shape[2], n_classes=args.num_classes)
+        elif args.net == 'ResUNet_ASPP':
+            model = ResUNet_ASPP(
                 in_ch=args.input_shape[2], n_classes=args.num_classes)
 
         if args.optimizer == 'adam':
