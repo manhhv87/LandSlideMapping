@@ -81,7 +81,7 @@ class Trainer(object):
         #         in_ch=args.input_shape[2], n_classes=args.num_classes)
         elif args.net == 'SwinUNet':
             model = SwinUNet(
-                in_ch=args.input_shape[2], n_classes=args.num_classes, img_size=128, window_size=8, depths=[2, 2, 2, 2], depths_decoder=[2, 2, 2, 1])
+                in_ch=args.input_shape[2], n_classes=args.num_classes, img_size=128, window_size=8, depths=[2, 2, 6, 2], depths_decoder=[1, 2, 2, 2])
         elif args.net == 'ResUNet':
             model = ResUNet(
                 in_ch=args.input_shape[2], n_classes=args.num_classes)

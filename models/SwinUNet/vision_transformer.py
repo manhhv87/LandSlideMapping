@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 
 
 class SwinUNet(nn.Module):
-    def __init__(self, img_size=224, patch_size=4, in_ch=3, n_classes=2, window_size=7, depths=[2, 2, 2, 2], depths_decoder=[2, 2, 2, 1], num_heads=[3, 6, 12, 24]):
+    def __init__(self, img_size=224, patch_size=4, in_ch=3, n_classes=2, window_size=7, depths=[2, 2, 6, 2], depths_decoder=[1, 2, 2, 2], num_heads=[3, 6, 12, 24]):
         super(SwinUNet, self).__init__()
         self.img_size = img_size
         self.patch_size = patch_size
